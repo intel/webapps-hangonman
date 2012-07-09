@@ -37,7 +37,6 @@ function license_init(id, hpageid)
             /* the other way */
             if((frame.scrollY == old)&&(delay++ > ((100*dT)/20)))
             {
-                console.log("RESET");
                 delay = 0;
                 if(frame.scrollY > 0)
                 {
