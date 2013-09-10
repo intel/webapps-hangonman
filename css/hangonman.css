@@ -111,7 +111,7 @@ body {
 }
 /* 720 x 1280 */
 @media (min-width: 720px) and (min-height: 1280px) and (orientation: portrait) {
-  body { top: 0%; left: 0%; -webkit-transform: translate(-50%, -50%) rotate(90deg) scale(1.25, 1.199) translate(50%, -50%); }
+  body { top: 0%; left: 0%; -webkit-transform: translate(-50%, -50%) rotate(90deg) scale(1.64, 1.63) translate(50%, -50%); }
 }
 
 .night #container {
