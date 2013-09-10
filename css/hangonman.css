@@ -12,40 +12,37 @@
 
 @font-face {
     font-family: DinBlack;
-    src: url("../fonts/Comfortaa-Bold.ttf");
-    format('truetype');
+    src: url("../fonts/Comfortaa-Bold.ttf") format('truetype');
 }
 
 @font-face {
     font-family: DinBold;
-    src: url("../fonts/Comfortaa-Regular.ttf");
-    format('truetype');
+    src: url("../fonts/Comfortaa-Regular.ttf") format('truetype');
 }
 
 @font-face {
     font-family: DinMedium;
-    src: url("../fonts/Comfortaa-Light.ttf");
-    format('truetype');
+    src: url("../fonts/Comfortaa-Light.ttf") format('truetype');
 }
 
 .hbox {
     display: -webkit-box;
     -webkit-box-orient: horizontal;
 }
- 
+
 .hbox > :not([class=vbox]) {
     -webkit-box-flex: 0;
 }
- 
+
 .vbox {
     display: -webkit-box;
     -webkit-box-orient: vertical;
 }
- 
+
 .vbox > :not([class=hbox]) {
     -webkit-box-flex: 0;
 }
- 
+
 body {
     margin: 0px;
     -webkit-user-select: none;
@@ -308,7 +305,7 @@ body:not(.isDialogUp) #giveUp_button:hover {
     position: relative;
     bottom: 200px;
     opacity: 0;
-    //-webkit-transform: scale(3, 3);
+    /*-webkit-transform: scale(3, 3);*/
     -webkit-transition: opacity 2s ease-in, -webkit-transform 2s ease-in; 
     z-index: 0;
 }
@@ -324,19 +321,19 @@ body:not(.isDialogUp) #giveUp_button:hover {
     font-family: DinBlack;
     position: absolute;
     width: 100px;
-    //outline: 1px yellow solid;
+    /*outline: 1px yellow solid;*/
 }
 
 .letterGuessed {
     color: transparent;
-    //text-shadow: -1px -1px 2px #888, 1px 1px 2px #fff;
+    /*text-shadow: -1px -1px 2px #888, 1px 1px 2px #fff;*/
     text-shadow: none;
     -webkit-text-stroke: 2px rgba(128, 128, 128, .5);
 }
 
 .letterPressed {
     color: #b8242a;
-    //text-shadow: -1px -1px 2px #888, 1px 1px 2px #fff;
+    /*text-shadow: -1px -1px 2px #888, 1px 1px 2px #fff;*/
     text-shadow: -1px -1px 3px #ddd, 1px 1px 3px #555;
 }
 
