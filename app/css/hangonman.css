@@ -12,17 +12,17 @@
 
 @font-face {
     font-family: DinBlack;
-    src: url("../fonts/Comfortaa-Bold.ttf") format('truetype');
+    src: url("../lib/Comfortaa/Comfortaa_Bold.ttf") format('truetype');
 }
 
 @font-face {
     font-family: DinBold;
-    src: url("../fonts/Comfortaa-Regular.ttf") format('truetype');
+    src: url("../lib/Comfortaa/Comfortaa_Regular.ttf") format('truetype');
 }
 
 @font-face {
     font-family: DinMedium;
-    src: url("../fonts/Comfortaa-Light.ttf") format('truetype');
+    src: url("../lib/Comfortaa/Comfortaa_Thin.ttf") format('truetype');
 }
 
 .hbox {
