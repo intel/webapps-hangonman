@@ -1024,6 +1024,32 @@ window.addEventListener("load", function (event)
         }
     };
 
+    var setBodyTransform = function() {
+        setTimeout(function() {
+            var body = document.getElementsByTagName("body")[0];
+            body.style["-webkit-transform"] =
+                "translate(-50%, -50%)"+
+                "scale("+
+                document.documentElement.clientWidth/body.offsetWidth+
+                ","+
+                document.documentElement.clientHeight/body.offsetHeight+
+                ")";
+        }, 0);
+    };
+
+    var previousOrientation = window.orientation;
+    var checkOrientation = function(){
+        if(window.orientation !== previousOrientation){
+            previousOrientation = window.orientation;
+            setBodyTransform();
+        }
+    };
+
+    window.addEventListener("resize", checkOrientation, false);
+    window.addEventListener("orientationchange", checkOrientation, false);
+
+    setBodyTransform();
+
 }, false);
 
 // Start immediately
