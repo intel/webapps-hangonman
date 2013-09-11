@@ -55,9 +55,6 @@ body {
     -webkit-box-orient: vertical;
     box-shadow: 5px 5px 20px black;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
 }
 
 #container {

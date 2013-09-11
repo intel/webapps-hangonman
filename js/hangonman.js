@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2012, Intel Corporation.
  *
- * This program is licensed under the terms and conditions of the 
+ * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -16,7 +16,7 @@ function getStyle (elem, prop)
 ////////////////////////////////////////////////////////////////////////////////
 // Function to handle user input
 
-function handleKeyDown(event) 
+function handleKeyDown(event)
 {
     if (!gameInProgress || isDialogUp) return;
     if (event.ctrlKey) return;
@@ -37,7 +37,7 @@ function handleKeyDown(event)
     }
 }
 
-function handleKeyUp(event) 
+function handleKeyUp(event)
 {
     if (!gameInProgress || isDialogUp) return;
     if (event.ctrlKey) return;
@@ -52,7 +52,7 @@ function handleKeyUp(event)
     }
 }
 
-function letterPressed (event) 
+function letterPressed (event)
 {
     if (!gameInProgress || isDialogUp) return;
 
@@ -66,7 +66,7 @@ function letterPressed (event)
 }
 
 
-function letterEntered (event) 
+function letterEntered (event)
 {
     if (!gameInProgress || isDialogUp) return;
 
@@ -78,7 +78,7 @@ function letterEntered (event)
     }
 }
 
-function letterLeft (event) 
+function letterLeft (event)
 {
     if (!gameInProgress || isDialogUp) return;
 
@@ -91,7 +91,7 @@ function letterLeft (event)
     }
 }
 
-function letterSelected (event) 
+function letterSelected (event)
 {
     if (!gameInProgress || isDialogUp) return;
 
@@ -116,7 +116,7 @@ function chooseLetter (index)
     if (useSounds) {
         clickSound.play();
     }
-    
+
     var letter = alphabet.string.charAt(index);
 
     var found = false;
@@ -143,7 +143,7 @@ function initAlphabet ()
     var alphabet = { "string": alphabetString, "data": new Array(alphabetString.length) };
     for (var i = 0; i < alphabet.string.length; ++i) {
         alphabet.data[i] = {"elem": undefined, "selected": false};
-    }    
+    }
 
     var fragment = document.createDocumentFragment();
 
@@ -270,7 +270,7 @@ function restoreSettings ()
     }
 }
 
-function clearTimers () 
+function clearTimers ()
 {
     [waitId, timeoutId].forEach(function(id) {
         if (id) {
@@ -292,12 +292,12 @@ function initAnswer (answerString)
     }
 
     var words = answerString.match(/\S+/g);
-    var answer = { "string": words.join(" "), 
+    var answer = { "string": words.join(" "),
                    "letters": "",
                    "numRight": 0,
                    "data": [] };
     var alphabetRegex = new RegExp("["+alphabetString+"]");
-        
+
     for (var i in words) {
         var wordElem = document.createElement("div");
         wordElem.classList.add("answer_word");
@@ -330,7 +330,7 @@ function initAnswer (answerString)
 
 
 var faceElem;
-function guessedRight (letter) 
+function guessedRight (letter)
 {
     if (useSounds && yeahSound) {
         yeahSound.play();
@@ -388,7 +388,7 @@ function updateHangman(firstTime)
             }
             else {
                 rightShoeElem.classList.remove("falling");
-            }                       
+            }
         }
     }, delay);
 }
@@ -466,17 +466,17 @@ function hideElement (domId)
 }
 
 
-function addButtonEffects (elem) 
+function addButtonEffects (elem)
 {
-    elem.addEventListener("mousedown", 
+    elem.addEventListener("mousedown",
                           function (event) {
                               elem.classList.add("pressed");
                           }, false);
-    elem.addEventListener("mouseup", 
+    elem.addEventListener("mouseup",
                           function (event) {
                               elem.classList.remove("pressed");
                           }, false);
-    elem.addEventListener("mouseout", 
+    elem.addEventListener("mouseout",
                           function (event) {
                               elem.classList.remove("pressed");
                           }, false);
@@ -497,7 +497,7 @@ function initButton (domId, handler)
 }
 
 var bodyElem;
-function initDialogs () 
+function initDialogs ()
 {
     var now = (new Date()).getHours();
     var morning =  6; // 6am
@@ -518,7 +518,7 @@ function initDialogs ()
 
     var helpElem = document.getElementById("help");
     helpElem.addEventListener("click", learnMore, false);
-    
+
     initButton("play_button", firstStart);
     initButton("learnMore_close", learnLess);
     initButton("newGame_button", newGame);
@@ -542,7 +542,7 @@ var inner;
 var innerStyle;
 var lWireStyle;
 var rWireStyle;
-function restartBounce (isLast) 
+function restartBounce (isLast)
 {
     setTimeout(function() {
         innerStyle = innerStyle || inner.style;
@@ -552,7 +552,7 @@ function restartBounce (isLast)
         lWireStyle.webkitAnimationName = "none";
         rWireStyle.webkitAnimationName = "none";
     }, 0);
-    
+
     var numFingers = maxWrongGuesses - wrongGuesses.length;
     var bodyAnimation = "bounce";
     var leftWireAnimation = "bounce-wire-left";
@@ -621,7 +621,7 @@ function initWordLists (wordLists)
 
 var newGameList;
 var gameTypeLabel;
-function selectGameType (event) 
+function selectGameType (event)
 {
     if (gameType != this.index) {
         newGameList = newGameList || document.getElementById("newGame_list");
@@ -793,11 +793,11 @@ var isDialogUp = false;
 var maxWrongGuesses = 10;
 
 var wordLists = [
-    {"title":"words_animals",   "src":"animals.json"},   
-    {"title":"words_wineTerms", "src":"wine.json"},      
-    {"title":"words_nations",   "src":"nations.json"},   
+    {"title":"words_animals",   "src":"animals.json"},
+    {"title":"words_wineTerms", "src":"wine.json"},
+    {"title":"words_nations",   "src":"nations.json"},
     {"title":"words_phrases",   "src":"phrases.json"},
-    {"title":"words_bodyParts", "src":"bodyparts.json"}, 
+    {"title":"words_bodyParts", "src":"bodyparts.json"},
     //{"title":"words_common",    "method":""},
 ];
 
@@ -839,7 +839,7 @@ function createCloud ()
     window.setTimeout(createCloud, delay);
 }
 
-function moveStartElem () 
+function moveStartElem ()
 {
     var currentLeftStr = getStyle(startElem, "left");
     var currentLeft = parseInt(currentLeftStr);
@@ -870,7 +870,7 @@ var BIRD_SIDE_TAIL     = 10;
 var birdElems = [undefined, undefined, undefined, undefined];
 function fidgetBirds (whichBird)
 {
-    setTimeout(function () 
+    setTimeout(function ()
     {
         if (gameInProgress) {
             return;
@@ -901,7 +901,7 @@ function fidgetBirds (whichBird)
                 if (whichChange == 1) fidgetToggle(birdElem, state, BIRD_SIDE_TAIL);
                 else fidgetNod(birdElem);
                 break;
-            default: 
+            default:
                 fidgetChange(birdElem, state);
             }
         }
@@ -947,7 +947,7 @@ function fidgetNod (elem)
 var backgroundSound, clickSound, yeahSound, whoaSound, loseSound, dialogSound;
 
 var startElem;
-window.addEventListener("DOMContentLoaded", function(event) 
+window.addEventListener("DOMContentLoaded", function(event)
 {
     license_init("license", "container");
     initStaticStrings();
@@ -986,7 +986,137 @@ window.addEventListener("DOMContentLoaded", function(event)
     dialogSound = document.querySelector("audio.dialog");
 }, false);
 
-window.addEventListener("load", function (event) 
+var scaleBody = function (container, mobileWidth) {
+    // height and width of the page-container element; note that these
+    // should be set in CSS so we can do measure once here
+    var computedStyles = window.getComputedStyle(container);
+    var containerWidth = parseInt(computedStyles.width.replace('px', ''), 10);
+    var containerHeight = parseInt(computedStyles.height.replace('px', ''), 10);
+    var containerStyle = container.style;
+    containerStyle.position = 'absolute';
+    containerStyle['-webkit-transform-origin'] = '0 0 0';
+    containerStyle.transform = '0 0 0';
+    containerStyle.display = 'none';
+
+    // resize page so that it fills it either horizontally or vertically
+    var scaleLandscape = function () {
+        // available height and width
+        var availableWidth = document.documentElement.clientWidth;
+        var availableHeight = document.documentElement.clientHeight;
+
+        // work out ratio of available height to container height,
+        // and the same for width
+        var scaleWidth = availableWidth / containerWidth;
+        var scaleHeight = availableHeight / containerHeight;
+
+        // use a single scaling value for both width and height:
+        // whichever is smaller, vertical or horizontal scale
+        var scaleBoth = scaleWidth;
+        if (scaleHeight < scaleWidth) {
+            scaleBoth = scaleHeight;
+        }
+
+        var left = (availableWidth - (containerWidth * scaleBoth)) / 2;
+        left = parseInt(left * (1 / scaleBoth), 10);
+
+        var top = (availableHeight - (containerHeight * scaleBoth)) / 2;
+        top = parseInt(top * (1 / scaleBoth), 10);
+
+        var scaleTransform = 'scale(' + scaleBoth + ',' + scaleBoth + ')';
+        var translateTransform = 'translate(' + left + 'px, ' + top + 'px)';
+
+        containerStyle['-webkit-transform'] = scaleTransform + ' ' +
+            translateTransform;
+        containerStyle.transform = scaleTransform + ' ' +
+            translateTransform;
+    };
+
+    // manually apply a pseudo landscape orientation where the client
+    // width is smaller than its height
+    var scaleWithPseudoOrientation = function () {
+        // we rotate by 90deg around the top left corner
+        var rotateTransform = 'rotate(90deg)';
+
+        // figure out the available height and width
+        var availableWidth = document.documentElement.clientWidth;
+        var availableHeight = document.documentElement.clientHeight;
+
+        // we have to fit the container's width into the client height
+        // and container's height into its width, as it's rotated
+        // work out ratio of available height to container height,
+        // and the same for width
+        var scaleWidth = availableWidth / containerHeight;
+        var scaleHeight = availableHeight / containerWidth;
+
+        // use a single scaling value for both width and height:
+        // whichever is smaller, vertical or horizontal scale
+        var scaleBoth = scaleWidth;
+        if (scaleHeight < scaleWidth) {
+            scaleBoth = scaleHeight;
+        }
+
+        var scaleTransform = 'scale(' + scaleBoth + ',' + scaleBoth + ')';
+
+        // now we translate to centre the container in the client
+        var left = (availableWidth - (containerHeight * scaleBoth)) / 2;
+        left = parseInt(left * (1 / scaleBoth), 10) + containerHeight;
+
+        var top = (availableHeight - (containerWidth * scaleBoth)) / 2;
+        top = parseInt(top * (1 / scaleBoth), 10);
+
+        var translateTransform = 'translate(' + left + 'px, ' + top + 'px)';
+
+        containerStyle['-webkit-transform'] = scaleTransform + ' ' +
+            translateTransform + ' ' +
+            rotateTransform;
+        containerStyle.transform = scaleTransform + ' ' +
+            translateTransform + ' ' +
+            rotateTransform;
+    };
+
+    // scale according
+    var scale = function () {
+        if ('lockOrientation' in screen) {
+            // we are locked to landscape already
+            scaleLandscape();
+        }
+        else {
+            var doc = document.documentElement;
+
+            // if the window is small, assume we're on mobile
+            var onMobile = (doc.clientWidth <= mobileWidth);
+
+            if (doc.clientWidth < doc.clientHeight && onMobile) {
+                // we haven't locked to landscape orientation and the window is
+                // taller than it is wide, so we apply a pseudo-landscape transform
+                scaleWithPseudoOrientation();
+            }
+            else {
+                scaleLandscape();
+            }
+        }
+    };
+
+    // lock orientation if possible
+    if (screen.lockOrientation) {
+        screen.lockOrientation('landscape');
+    }
+
+    // set up handlers
+    window.onresize = scale;
+    window.addEventListener('orientationchange', scale);
+
+    // run first scale
+    scale();
+
+    // apply borders to the page container once it has had its first resize
+    setTimeout(function () {
+        containerStyle.display = 'block';
+    }, 0);
+
+};
+
+window.addEventListener("load", function (event)
 {
     var infocus = true;
 
@@ -1024,31 +1154,7 @@ window.addEventListener("load", function (event)
         }
     };
 
-    var setBodyTransform = function() {
-        setTimeout(function() {
-            var body = document.getElementsByTagName("body")[0];
-            body.style["-webkit-transform"] =
-                "translate(-50%, -50%)"+
-                "scale("+
-                document.documentElement.clientWidth/body.offsetWidth+
-                ","+
-                document.documentElement.clientHeight/body.offsetHeight+
-                ")";
-        }, 0);
-    };
-
-    var previousOrientation = window.orientation;
-    var checkOrientation = function(){
-        if(window.orientation !== previousOrientation){
-            previousOrientation = window.orientation;
-            setBodyTransform();
-        }
-    };
-
-    window.addEventListener("resize", checkOrientation, false);
-    window.addEventListener("orientationchange", checkOrientation, false);
-
-    setBodyTransform();
+    scaleBody(document.getElementsByTagName("body")[0], 720);
 
 }, false);
 
