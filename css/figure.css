@@ -601,7 +601,6 @@
 }
 
 #hangman.v0 #right_wire {
-    visibility: hidden;
     left: 0px;
     -webkit-transform: rotate(0deg);
 }
