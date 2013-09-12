@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2012, Intel Corporation.
  *
- * This program is licensed under the terms and conditions of the 
+ * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -16,7 +16,7 @@ function getStyle (elem, prop)
 ////////////////////////////////////////////////////////////////////////////////
 // Function to handle user input
 
-function handleKeyDown(event) 
+function handleKeyDown(event)
 {
     if (!gameInProgress || isDialogUp) return;
     if (event.ctrlKey) return;
@@ -37,7 +37,7 @@ function handleKeyDown(event)
     }
 }
 
-function handleKeyUp(event) 
+function handleKeyUp(event)
 {
     if (!gameInProgress || isDialogUp) return;
     if (event.ctrlKey) return;
@@ -52,7 +52,7 @@ function handleKeyUp(event)
     }
 }
 
-function letterPressed (event) 
+function letterPressed (event)
 {
     if (!gameInProgress || isDialogUp) return;
 
@@ -66,7 +66,7 @@ function letterPressed (event)
 }
 
 
-function letterEntered (event) 
+function letterEntered (event)
 {
     if (!gameInProgress || isDialogUp) return;
 
@@ -78,7 +78,7 @@ function letterEntered (event)
     }
 }
 
-function letterLeft (event) 
+function letterLeft (event)
 {
     if (!gameInProgress || isDialogUp) return;
 
@@ -91,7 +91,7 @@ function letterLeft (event)
     }
 }
 
-function letterSelected (event) 
+function letterSelected (event)
 {
     if (!gameInProgress || isDialogUp) return;
 
@@ -116,7 +116,7 @@ function chooseLetter (index)
     if (useSounds) {
         clickSound.play();
     }
-    
+
     var letter = alphabet.string.charAt(index);
 
     var found = false;
@@ -143,7 +143,7 @@ function initAlphabet ()
     var alphabet = { "string": alphabetString, "data": new Array(alphabetString.length) };
     for (var i = 0; i < alphabet.string.length; ++i) {
         alphabet.data[i] = {"elem": undefined, "selected": false};
-    }    
+    }
 
     var fragment = document.createDocumentFragment();
 
@@ -270,7 +270,7 @@ function restoreSettings ()
     }
 }
 
-function clearTimers () 
+function clearTimers ()
 {
     [waitId, timeoutId].forEach(function(id) {
         if (id) {
@@ -292,12 +292,12 @@ function initAnswer (answerString)
     }
 
     var words = answerString.match(/\S+/g);
-    var answer = { "string": words.join(" "), 
+    var answer = { "string": words.join(" "),
                    "letters": "",
                    "numRight": 0,
                    "data": [] };
     var alphabetRegex = new RegExp("["+alphabetString+"]");
-        
+
     for (var i in words) {
         var wordElem = document.createElement("div");
         wordElem.classList.add("answer_word");
@@ -330,7 +330,7 @@ function initAnswer (answerString)
 
 
 var faceElem;
-function guessedRight (letter) 
+function guessedRight (letter)
 {
     if (useSounds && yeahSound) {
         yeahSound.play();
@@ -388,7 +388,7 @@ function updateHangman(firstTime)
             }
             else {
                 rightShoeElem.classList.remove("falling");
-            }                       
+            }
         }
     }, delay);
 }
@@ -466,17 +466,17 @@ function hideElement (domId)
 }
 
 
-function addButtonEffects (elem) 
+function addButtonEffects (elem)
 {
-    elem.addEventListener("mousedown", 
+    elem.addEventListener("mousedown",
                           function (event) {
                               elem.classList.add("pressed");
                           }, false);
-    elem.addEventListener("mouseup", 
+    elem.addEventListener("mouseup",
                           function (event) {
                               elem.classList.remove("pressed");
                           }, false);
-    elem.addEventListener("mouseout", 
+    elem.addEventListener("mouseout",
                           function (event) {
                               elem.classList.remove("pressed");
                           }, false);
@@ -497,7 +497,7 @@ function initButton (domId, handler)
 }
 
 var bodyElem;
-function initDialogs () 
+function initDialogs ()
 {
     var now = (new Date()).getHours();
     var morning =  6; // 6am
@@ -518,7 +518,7 @@ function initDialogs ()
 
     var helpElem = document.getElementById("help");
     helpElem.addEventListener("click", learnMore, false);
-    
+
     initButton("play_button", firstStart);
     initButton("learnMore_close", learnLess);
     initButton("newGame_button", newGame);
@@ -542,7 +542,7 @@ var inner;
 var innerStyle;
 var lWireStyle;
 var rWireStyle;
-function restartBounce (isLast) 
+function restartBounce (isLast)
 {
     setTimeout(function() {
         innerStyle = innerStyle || inner.style;
@@ -552,7 +552,7 @@ function restartBounce (isLast)
         lWireStyle.webkitAnimationName = "none";
         rWireStyle.webkitAnimationName = "none";
     }, 0);
-    
+
     var numFingers = maxWrongGuesses - wrongGuesses.length;
     var bodyAnimation = "bounce";
     var leftWireAnimation = "bounce-wire-left";
@@ -621,7 +621,7 @@ function initWordLists (wordLists)
 
 var newGameList;
 var gameTypeLabel;
-function selectGameType (event) 
+function selectGameType (event)
 {
     if (gameType != this.index) {
         newGameList = newGameList || document.getElementById("newGame_list");
@@ -793,11 +793,11 @@ var isDialogUp = false;
 var maxWrongGuesses = 10;
 
 var wordLists = [
-    {"title":"words_animals",   "src":"animals.json"},   
-    {"title":"words_wineTerms", "src":"wine.json"},      
-    {"title":"words_nations",   "src":"nations.json"},   
+    {"title":"words_animals",   "src":"animals.json"},
+    {"title":"words_wineTerms", "src":"wine.json"},
+    {"title":"words_nations",   "src":"nations.json"},
     {"title":"words_phrases",   "src":"phrases.json"},
-    {"title":"words_bodyParts", "src":"bodyparts.json"}, 
+    {"title":"words_bodyParts", "src":"bodyparts.json"},
     //{"title":"words_common",    "method":""},
 ];
 
@@ -839,7 +839,7 @@ function createCloud ()
     window.setTimeout(createCloud, delay);
 }
 
-function moveStartElem () 
+function moveStartElem ()
 {
     var currentLeftStr = getStyle(startElem, "left");
     var currentLeft = parseInt(currentLeftStr);
@@ -870,7 +870,7 @@ var BIRD_SIDE_TAIL     = 10;
 var birdElems = [undefined, undefined, undefined, undefined];
 function fidgetBirds (whichBird)
 {
-    setTimeout(function () 
+    setTimeout(function ()
     {
         if (gameInProgress) {
             return;
@@ -901,7 +901,7 @@ function fidgetBirds (whichBird)
                 if (whichChange == 1) fidgetToggle(birdElem, state, BIRD_SIDE_TAIL);
                 else fidgetNod(birdElem);
                 break;
-            default: 
+            default:
                 fidgetChange(birdElem, state);
             }
         }
@@ -947,7 +947,7 @@ function fidgetNod (elem)
 var backgroundSound, clickSound, yeahSound, whoaSound, loseSound, dialogSound;
 
 var startElem;
-window.addEventListener("DOMContentLoaded", function(event) 
+window.addEventListener("DOMContentLoaded", function(event)
 {
     license_init("license", "container");
     initStaticStrings();
@@ -986,7 +986,7 @@ window.addEventListener("DOMContentLoaded", function(event)
     dialogSound = document.querySelector("audio.dialog");
 }, false);
 
-window.addEventListener("load", function (event) 
+window.addEventListener("load", function (event)
 {
     var infocus = true;
 
@@ -1023,6 +1023,8 @@ window.addEventListener("load", function (event)
             }
         }
     };
+
+    scaleBody(document.getElementsByTagName("body")[0], 720);
 
 }, false);
 
