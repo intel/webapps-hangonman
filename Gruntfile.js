@@ -1,5 +1,6 @@
 module.exports = function (grunt) {
 
+  grunt.loadNpmTasks('grunt-tizen');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
@@ -10,9 +11,22 @@ module.exports = function (grunt) {
 
   grunt.initConfig({
     packageInfo: grunt.file.readJSON('package.json'),
-    chromeInfo: grunt.file.readJSON('manifest.json'),
+    chromeInfo: grunt.file.readJSON('data/manifest.json'),
 
     clean: ['build'],
+
+    tizen_configuration: {
+      // location on the device to install the tizen-app.sh script to
+      // (default: '/tmp')
+      tizenAppScriptDir: '/home/developer/',
+
+      // path to the config.xml file for the Tizen wgt file
+      // (default: 'config.xml')
+      configFile: 'data/config.xml',
+
+      // path to the sdb command (default: process.env.SDB or 'sdb')
+      sdbCmd: 'sdb'
+    },
 
     // minify JS
     uglify: {
@@ -54,7 +68,7 @@ module.exports = function (grunt) {
       wgt: {
         files: [
           { expand: true, cwd: 'build/app/', src: ['**'], dest: 'build/wgt/' },
-          { expand: true, cwd: '.', src: ['config.xml'], dest: 'build/wgt/' },
+          { expand: true, cwd: 'data/', src: ['config.xml'], dest: 'build/wgt/' },
           { expand: true, cwd: '.', src: ['icon_128.png'], dest: 'build/wgt/' }
         ]
       },
@@ -71,7 +85,7 @@ module.exports = function (grunt) {
           { expand: true, cwd: '.', src: ['app/css/*.css'], dest: 'build/sdk/css/' },
           { expand: true, cwd: '.', src: ['app/js/*.js'], dest: 'build/sdk/js/' },
           { expand: true, cwd: '.', src: ['app/*.html'], dest: 'build/sdk/' },
-          { expand: true, cwd: '.', src: ['config.xml'], dest: 'build/sdk/' },
+          { expand: true, cwd: 'data/', src: ['config.xml'], dest: 'build/sdk/' },
           { expand: true, cwd: '.', src: ['icon*.png'], dest: 'build/sdk/' }
         ]
       }
@@ -126,77 +140,6 @@ module.exports = function (grunt) {
       }
     },
 
-    webtizen: {
-      sign: {
-        cwd: "build/wgt",
-        args: "signing --nocheck -p "
-         + (process.env.TIZENSDKPROFILE||"test:"+process.env.HOME+"/tizen-sdk/tools/ide/sample/profiles.xml")
-      }
-    },
-
-    sdb: {
-      prepare: {
-        action: 'push',
-        localFiles: './tools/grunt-tasks/tizen-app.sh',
-        remoteDestDir: '/home/developer/',
-        chmod: '+x',
-        overwrite: true
-      },
-
-      pushwgt: {
-        action: 'push',
-        localFiles: {
-          pattern: 'build/*.wgt',
-          filter: 'latest'
-        },
-        remoteDestDir: '/home/developer/'
-      },
-
-      pushdumpscript: {
-        action: 'push',
-        localFiles: 'tools/dump-localStorage.sh',
-        remoteDestDir: '/home/developer/',
-        chmod: '+x',
-        overwrite: true
-      },
-
-      dumplocalstorage: {
-        action: 'script',
-        remoteScript: '/home/developer/dump-localStorage.sh'
-      },
-
-      stop: {
-        action: 'stop',
-        remoteScript: '/home/developer/tizen-app.sh'
-      },
-
-      uninstall: {
-        action: 'uninstall',
-        remoteScript: '/home/developer/tizen-app.sh'
-      },
-
-      install: {
-        action: 'install',
-        remoteFiles: {
-          pattern: '/home/developer/*.wgt',
-          filter: 'latest'
-        },
-        remoteScript: '/home/developer/tizen-app.sh'
-      },
-
-      debug: {
-        action: 'debug',
-        remoteScript: '/home/developer/tizen-app.sh',
-        localPort: '8888',
-        openBrowser: 'google-chrome %URL%'
-      },
-
-      start: {
-        action: 'start',
-        remoteScript: '/home/developer/tizen-app.sh'
-      }
-    },
-
     inline: {
       script: 'build/save-perf-data.min.js',
       htmlFile: 'build/app/index.html'
@@ -205,6 +148,46 @@ module.exports = function (grunt) {
     simple_server: {
       port: 30303,
       dir: 'build/app/'
+    },
+
+    tizen: {
+      push: {
+        action: 'push',
+        localFiles: {
+          pattern: 'build/*.wgt',
+          filter: 'latest'
+        },
+        remoteDir: '/home/developer/'
+      },
+
+      install: {
+        action: 'install',
+        remoteFiles: {
+          pattern: '/home/developer/HangOnMan*.wgt',
+          filter: 'latest'
+        }
+      },
+
+      uninstall: {
+        action: 'uninstall'
+      },
+
+      start: {
+        action: 'start',
+        stopOnFailure: true
+      },
+
+      stop: {
+        action: 'stop',
+        stopOnFailure: false
+      },
+
+      debug: {
+        action: 'debug',
+        browserCmd: 'google-chrome %URL%',
+        localPort: 9090,
+        stopOnFailure: true
+      }
     }
   });
 
@@ -218,7 +201,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('crx', ['dist', 'copy:crx']);
-  grunt.registerTask('wgt', ['dist', 'copy:wgt', 'webtizen:sign', 'package:wgt']);
+  grunt.registerTask('wgt', ['dist', 'copy:wgt', 'package:wgt']);
 
   grunt.registerTask('sdk', [
     'clean',
@@ -237,12 +220,11 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('install', [
-    'sdb:prepare',
-    'sdb:pushwgt',
-    'sdb:stop',
-    'sdb:uninstall',
-    'sdb:install',
-    'sdb:start'
+    'tizen:push',
+    'tizen:stop',
+    'tizen:uninstall',
+    'tizen:install',
+    'tizen:start'
   ]);
 
   grunt.registerTask('wait', function () {
@@ -252,19 +234,7 @@ module.exports = function (grunt) {
     }, 10000);
   });
 
-  grunt.registerTask('perf-test', function () {
-    var tasks = ['sdb:pushdumpscript', 'perf', 'install', 'sdb:stop'];
-
-    for (var i = 0; i < 11; i++) {
-      tasks.push('sdb:start', 'wait', 'sdb:stop');
-    }
-
-    tasks.push('sdb:dumplocalstorage')
-
-    grunt.task.run(tasks);
-  });
-
-  grunt.registerTask('restart', ['sdb:stop', 'sdb:start']);
+  grunt.registerTask('restart', ['tizen:stop', 'tizen:start']);
 
   grunt.registerTask('server', ['dist', 'simple_server']);
 
