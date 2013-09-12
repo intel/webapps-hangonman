@@ -41,9 +41,7 @@ module.exports = function (grunt) {
     copy: {
       common: {
         files: [
-          { expand: true, cwd: '.', src: ['app/lib/Comfortaa/Comfortaa_Regular.ttf'], dest: 'build/' },
-          { expand: true, cwd: '.', src: ['app/lib/Comfortaa/Comfortaa_Bold.ttf'], dest: 'build/' },
-          { expand: true, cwd: '.', src: ['app/lib/Comfortaa/Comfortaa_Thin.ttf'], dest: 'build/' },
+          { expand: true, cwd: '.', src: ['app/lib/**'], dest: 'build/' },
           { expand: true, cwd: '.', src: ['app/images/*.svg'], dest: 'build/' },
           { expand: true, cwd: '.', src: ['app/images/*.xcf'], dest: 'build/' },
           { expand: true, cwd: '.', src: ['app/audio/**'], dest: 'build/' },
