@@ -1,10 +1,10 @@
-Classic Hangman game 
+Classic Hangman game
 
 Author: Ben Drucker <benjamin.t.drucker@intel.com>
 Owner: Todd Brandt <todd.e.brandt@intel.com>
 
 Technical Details: This application is written using HTML5/css3
-and is distributed under Apache2.0 license. 
+and is distributed under Apache2.0 license.
 
 SOUNDS
 ------------------------------------------------------------------------------
@@ -16,11 +16,11 @@ FONTS
 -----------------------------------------------------------------------------
 
 These files are a part of a group from the same source
-Comfortaa-Bold.ttf
-Comfortaa-Light.ttf
-Comfortaa-Regular.ttf
-Origin: http://www.google.com/webfonts
-License: fonts/OFL.txt
+Comfortaa_Bold.ttf
+Comfortaa_Thin.ttf
+Comfortaa_Regular.ttf
+Origin: http://www.fontsquirrel.com/webfonts
+License: lib/SIL\ Open\ Font\ License.txt
 
 IMAGES
 -----------------------------------------------------------------------------
