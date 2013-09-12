@@ -140,11 +140,6 @@ module.exports = function (grunt) {
       }
     },
 
-    inline: {
-      script: 'build/save-perf-data.min.js',
-      htmlFile: 'build/app/index.html'
-    },
-
     simple_server: {
       port: 30303,
       dir: 'build/app/'
