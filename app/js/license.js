@@ -16,31 +16,11 @@ function license_init(id, hpageid)
     var ltext = document.getElementById(id+"text");
     var lscroll = document.getElementById(id+"scroll");
     var timer;
-
-    var request = new XMLHttpRequest();
-    request.open("GET", "README.txt", false);
-    request.onload = function(e) {
-        var text = this.responseText;
-        text = text.replace(/</g,"&lt;");
-        text = text.replace(/>/g,"&gt;");
-        var lines = text.split("\n");
-        lines[0] = "<br><br>"+lines[0];
-        for(var i in lines)
-        {
-            if(lines[i].match(/--------------------/))
-            {
-                lines[i] = "";
-            }
-            else
-            {
-                lines[i] += "<br>";
-            }
-        }
-        lscroll.innerHTML = lines.join("\n");
-    }
-    request.send();
+    var priorHpageDisplay = hpage.style.display;
 
     lbtn.onclick = function() {
+        priorHpageDisplay=hpage.style.display;
+
         /* initialize scroll rate */
         var dY = 2;
         var t0 = 0;
@@ -49,7 +29,7 @@ function license_init(id, hpageid)
         /* set the scroller to the top position */
         lscroll.style.top = "0px";
 
-        /* display the license page, hide its parent */
+        /* display the license page */
         hpage.style.display="none";
         lpage.style.display="block";
 
@@ -77,12 +57,12 @@ function license_init(id, hpageid)
 
             /* if the lscroll has hit the limit, delay and swing */
             /* the other way */
-            if(newY >= maxY)
+            if((newY >= maxY)&&(dY > 0))
             {
                 delay = 5000;
                 dY = -20;
             }
-            else if(newY <= 0)
+            else if((newY <= 0)&&(dY < 0))
             {
                 delay = 5000;
                 dY = 2;
@@ -91,7 +71,7 @@ function license_init(id, hpageid)
     };
 
     qbtn.onclick = function() {
-        hpage.style.display="block";
+        hpage.style.display=priorHpageDisplay;
         lpage.style.display="none";
         clearInterval(timer);
     };
