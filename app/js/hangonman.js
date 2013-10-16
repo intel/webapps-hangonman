@@ -839,23 +839,6 @@ function createCloud ()
     window.setTimeout(createCloud, delay);
 }
 
-function moveStartElem ()
-{
-    var currentLeftStr = getStyle(startElem, "left");
-    var currentLeft = parseInt(currentLeftStr);
-    var units = currentLeftStr.replace(currentLeft, "");
-
-    if (currentLeft < 0) {
-        startElem.style.left = (currentLeft + 25) + units;
-    }
-    else {
-        startElem.removeEventListener('webkitTransitionEnd', moveStartElem);
-        if (!gameInProgress) {
-            showElement("help");
-        }
-    }
-}
-
 var BIRD_FRONT         = 0;
 var BIRD_FRONT_BLINK   = 1;
 var BIRD_FRONT_TILT    = 2;
@@ -959,15 +942,19 @@ window.addEventListener("DOMContentLoaded", function(event)
     if (!gameInProgress) {
         startElem = document.getElementById("start_container");
 
-        startElem.addEventListener('webkitTransitionEnd', moveStartElem, false);
+        // animate the container in
+        startElem.addEventListener("webkitAnimationEnd", function () {
+          if (!gameInProgress) {
+              showElement("help");
+          }
+        }, false);
+        startElem.style["-webkit-animation-name"] = "start_container_slide_in";
 
         showElement("title", "wire");
         fidgetBirds(0);
         fidgetBirds(1);
         fidgetBirds(2);
         fidgetBirds(3);
-
-        setTimeout(moveStartElem, 1000);
     }
     else {
         answer = initAnswer(word);

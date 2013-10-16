@@ -14,7 +14,14 @@
     bottom: 130px;
     left: -100%;
     z-index: 10;
-    -webkit-transition: left 0.1s, bottom 1s linear;
+    -webkit-animation-timing-function: ease-out;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-fill-mode: both;
+}
+
+@-webkit-keyframes start_container_slide_in {
+    0% {left: -100%;}
+  100% {left: 0%;}
 }
 
 #wire {
