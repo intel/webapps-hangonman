@@ -816,7 +816,6 @@ function createCloud ()
         var cloudElem = document.createElement("div");
         var classList = cloudElem.classList;
         classList.add("cloud");
-        cloudElem.addEventListener('webkitTransitionEnd', destroyCloud, false);
 
         var version = Math.floor(Math.random() * 3 + 1);  //[1 to 3]
         classList.add("v" + version);
@@ -824,34 +823,17 @@ function createCloud ()
         var rnd = Math.random();
         var bottom   = Math.floor(rnd * 75 + 10); //[10 to 85]
         var opacity  = (rnd * -0.6 + 0.9);  //[0.8 to  0.3]
-        var duration = (rnd * 20 + 20);  //[20.0 to 40.0]
+        var duration = (rnd * 20 + 30);  //[30.0 to 50.0]
         var scale    = (rnd * -0.7 + 1.0);  //[1.0 to  0.3]
         cloudElem.style.bottom = ""+bottom+"%";
         cloudElem.style.opacity = opacity;
-        cloudElem.style.webkitTransitionDuration = ""+duration+"s";
         cloudElem.style.webkitTransform = "scale("+scale+","+scale+")";  //[0.3 to 1.0]
-
+        cloudElem.style["-webkit-animation-duration"] = duration + "s";
+        cloudElem.style["-webkit-animation-name"] = "cloud_move";
         containerElem.appendChild(cloudElem);
-        window.setTimeout(function() {cloudElem.classList.add('move');});  //This can't be called directly or it wont animate
-    }
 
-    var delay = Math.random() * 5000 + 100; //[1 to 5]
-    window.setTimeout(createCloud, delay);
-}
-
-function moveStartElem ()
-{
-    var currentLeftStr = getStyle(startElem, "left");
-    var currentLeft = parseInt(currentLeftStr);
-    var units = currentLeftStr.replace(currentLeft, "");
-    if (currentLeft < 0) {
-        startElem.style.left = (currentLeft + 25) + units;
-    }
-    else {
-        startElem.removeEventListener('webkitTransitionEnd', moveStartElem);
-        if (!gameInProgress) {
-            showElement("help");
-        }
+        var delay = Math.random() * 4000 + 1000; //[1 to 5]
+        window.setTimeout(createCloud, delay);
     }
 }
 
@@ -957,8 +939,15 @@ window.addEventListener("DOMContentLoaded", function(event)
     alphabet = initAlphabet();
     if (!gameInProgress) {
         startElem = document.getElementById("start_container");
-        startElem.addEventListener('webkitTransitionEnd', moveStartElem, false);
-        setTimeout(moveStartElem, 1500);
+
+        // animate the container in
+        startElem.addEventListener("webkitAnimationEnd", function () {
+          if (!gameInProgress) {
+              showElement("help");
+          }
+        }, false);
+        startElem.style["-webkit-animation-name"] = "start_container_slide_in";
+
         showElement("title", "wire");
         fidgetBirds(0);
         fidgetBirds(1);
@@ -976,7 +965,7 @@ window.addEventListener("DOMContentLoaded", function(event)
     document.addEventListener("keyup", handleKeyUp, true);
 
     containerElem = document.getElementById("container");
-    window.setTimeout(createCloud, 1500);
+    createCloud();
 
     backgroundSound = document.querySelector("audio.background");
     clickSound = document.querySelector("audio.buttonClick");
@@ -1024,8 +1013,7 @@ window.addEventListener("load", function (event)
         }
     };
 
-    scaleBody(document.getElementsByTagName("body")[0], 720);
-
+    scaleBody(document.body, 720);
 }, false);
 
 // Start immediately
