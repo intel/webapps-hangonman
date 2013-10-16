@@ -14,6 +14,7 @@
     bottom: 130px;
     left: -100%;
     z-index: 10;
+    -webkit-animation-delay: 1s;
     -webkit-animation-timing-function: ease-out;
     -webkit-animation-duration: 2s;
     -webkit-animation-fill-mode: both;
