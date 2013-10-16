@@ -91,7 +91,6 @@
     position: absolute;
     top: -20px;
     left: 50%;
-    -webkit-transform: translateX(-50%);
     z-index: 15;
     -webkit-transform-origin: 50% 15px;
     -webkit-animation: wind_wave_sheet 2s infinite alternate ease-in-out;
