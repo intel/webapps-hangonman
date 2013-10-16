@@ -109,14 +109,18 @@ var scaleBody = function (container, mobileWidth) {
         }
     };
 
+    var nextTickScale = function () {
+      setTimeout(scale, 0);
+    };
+
     // lock orientation if possible
     if (screen.lockOrientation) {
         screen.lockOrientation('landscape');
     }
 
     // set up handlers
-    window.onresize = scale;
-    window.addEventListener('orientationchange', scale);
+    window.onresize = nextTickScale;
+    window.addEventListener('orientationchange', nextTickScale);
 
     // run first scale
     scale();
