@@ -844,6 +844,7 @@ function moveStartElem ()
     var currentLeftStr = getStyle(startElem, "left");
     var currentLeft = parseInt(currentLeftStr);
     var units = currentLeftStr.replace(currentLeft, "");
+
     if (currentLeft < 0) {
         startElem.style.left = (currentLeft + 25) + units;
     }
@@ -957,13 +958,16 @@ window.addEventListener("DOMContentLoaded", function(event)
     alphabet = initAlphabet();
     if (!gameInProgress) {
         startElem = document.getElementById("start_container");
+
         startElem.addEventListener('webkitTransitionEnd', moveStartElem, false);
-        setTimeout(moveStartElem, 1500);
+
         showElement("title", "wire");
         fidgetBirds(0);
         fidgetBirds(1);
         fidgetBirds(2);
         fidgetBirds(3);
+
+        setTimeout(moveStartElem, 1000);
     }
     else {
         answer = initAnswer(word);
@@ -976,7 +980,7 @@ window.addEventListener("DOMContentLoaded", function(event)
     document.addEventListener("keyup", handleKeyUp, true);
 
     containerElem = document.getElementById("container");
-    window.setTimeout(createCloud, 1500);
+    window.setTimeout(createCloud, 0);
 
     backgroundSound = document.querySelector("audio.background");
     clickSound = document.querySelector("audio.buttonClick");
@@ -1024,8 +1028,7 @@ window.addEventListener("load", function (event)
         }
     };
 
-    scaleBody(document.getElementsByTagName("body")[0], 720);
-
+    scaleBody(document.body, 720);
 }, false);
 
 // Start immediately

@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2012, Intel Corporation.
  *
- * This program is licensed under the terms and conditions of the 
+ * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -14,7 +14,7 @@
     bottom: 130px;
     left: -100%;
     z-index: 10;
-    -webkit-transition: left 1s, bottom 1s ease-out;
+    -webkit-transition: left 0.1s, bottom 1s linear;
 }
 
 #wire {
@@ -30,7 +30,7 @@
 }
 
 @-webkit-keyframes wind_wave {
-    0% {-webkit-transform: skewX(-3deg);} 
+    0% {-webkit-transform: skewX(-3deg);}
   100% {-webkit-transform: skewX( 3deg);}
 }
 
@@ -74,7 +74,7 @@
 }
 
 @-webkit-keyframes wind_wave_sheet {
-    0% {-webkit-transform: translateX(-50%) skewX(-1.5deg);} 
+    0% {-webkit-transform: translateX(-50%) skewX(-1.5deg);}
   100% {-webkit-transform: translateX(-50%) skewX( 1.5deg);}
 }
 
@@ -119,7 +119,7 @@
 }
 
 @-webkit-keyframes title-move-vert {
-    0% {top: 100px; -webkit-transform: skewY( 0.0deg);} 
+    0% {top: 100px; -webkit-transform: skewY( 0.0deg);}
    25% {top: 105px; -webkit-transform: skewY(-0.5deg);}
    50% {top: 107px; -webkit-transform: skewY( 0.0deg);}
    75% {top: 102px; -webkit-transform: skewY( 0.5deg);}
