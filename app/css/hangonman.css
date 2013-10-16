@@ -217,8 +217,17 @@ body:not(.isDialogUp) #giveUp_button:hover {
     -webkit-mask-position: top center;
     -webkit-mask-size: 100% 100%;
     background-color: white;
-    -webkit-transition: left 5s linear;
+    left: -100%;
     z-index: 5;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+}
+
+/* biggest cloud is 300px across, so we start the animation
+   that far out of the left-hand edge */
+@-webkit-keyframes cloud_move {
+    0% {left: -300px;}
+  100% {left: 1024px;}
 }
 
 .night .cloud {
@@ -245,10 +254,6 @@ body:not(.isDialogUp) #giveUp_button:hover {
     left: -300px;
     width: 300px;
     -webkit-mask-image: url('../images/cloud3.svg');
-}
-
-.cloud.move {
-    left: 1024px;
 }
 
 #hangman {
