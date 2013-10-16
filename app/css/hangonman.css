@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2012, Intel Corporation.
  *
- * This program is licensed under the terms and conditions of the 
+ * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -54,7 +54,7 @@ body {
     -webkit-box-pack: center;
     -webkit-box-orient: vertical;
     box-shadow: 5px 5px 20px black;
-    position: absolute;
+    overflow: hidden;
 }
 
 #container {
@@ -170,7 +170,7 @@ body {
     width: 95px;
 }
 
-body:not(.isDialogUp) #newGame_button:hover, 
+body:not(.isDialogUp) #newGame_button:hover,
 body:not(.isDialogUp) #giveUp_button:hover {
     background-image: -webkit-gradient(radial,
 				       center top, 1,
@@ -269,7 +269,7 @@ body:not(.isDialogUp) #giveUp_button:hover {
     bottom: 200px;
     opacity: 0;
     /*-webkit-transform: scale(3, 3);*/
-    -webkit-transition: opacity 2s ease-in, -webkit-transform 2s ease-in; 
+    -webkit-transition: opacity 2s ease-in, -webkit-transform 2s ease-in;
     z-index: 0;
 }
 
@@ -318,7 +318,7 @@ body:not(.isDialogUp) #giveUp_button:hover {
     -webkit-box-lines: multiple;
     -webkit-box-orient: horizontal;
     opacity: 0;
-    -webkit-transition: opacity 2s ease-in; 
+    -webkit-transition: opacity 2s ease-in;
     z-index: 0;
 }
 
@@ -364,7 +364,7 @@ body:not(.isDialogUp) #giveUp_button:hover {
 }
 
 .hbox .button:last-child {
-    margin-right: 0px; 
+    margin-right: 0px;
 }
 
 .vbox .button {
@@ -488,8 +488,8 @@ div.pressed {
     color: #b8242a;
 }
 
-.isDialogUp #play_button.pressed, 
-.isDialogUp #newGame_button.pressed, 
+.isDialogUp #play_button.pressed,
+.isDialogUp #newGame_button.pressed,
 .isDialogUp #giveUp_button.pressed {
     color: black;
 }
