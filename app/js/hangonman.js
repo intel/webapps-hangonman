@@ -124,9 +124,8 @@ function initAlphabet ()
     var fragment = document.createDocumentFragment();
 
     var numRows = 2;
-    var letterHeight = 70;
-    var letterWidth = 50;
-    var angleSweep = 2*Math.PI/13;
+    var fontSize = 70;
+    var angleSweep = 2*Math.PI/10;
     var radius = 1200;
 
     for (var row = 0; row < numRows; ++row) {
@@ -137,17 +136,18 @@ function initAlphabet ()
         var alphabetRange = alphabet.string.slice(startIndex, endIndex);
         var angle = angleSweep/2;
         var angleDelta = angleSweep / (endIndex-startIndex);
-        var rowRadius = radius + (row * letterHeight);
+        var rowRadius = radius + (row * fontSize * 2);
         for (var letterIndex = startIndex; letterIndex < endIndex; ++letterIndex) {
             var letter = alphabet.string.charAt(letterIndex);
-            var x = Math.sin(angle) * -rowRadius;
-            var y = (Math.cos(angle + Math.PI)+1) * -rowRadius + row*letterHeight;
+            var x = 10 + Math.sin(angle) * -rowRadius;
+            var y = (Math.cos(angle + Math.PI)+1) * -rowRadius + row*fontSize;
             var letterElem = document.createElement("div");
             alphabet.data[letterIndex].elem = letterElem;
             letterElem.classList.add("letter", "letterNotGuessed");
             letterElem.innerText = letter;
             letterElem.letterIndex = letterIndex;
-            letterElem.style.width = letterWidth + "px";
+            letterElem.style['font-size'] = fontSize + "px";
+            letterElem.style.width = fontSize + "px";
             letterElem.style.top = y+"px";
             letterElem.style.left = x+"px";
             letterElem.style.webkitTransform = "rotate("+angle+"rad)";

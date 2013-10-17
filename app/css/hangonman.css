@@ -149,10 +149,6 @@ body {
     top: 310px;
 }
 
-#newGame.shown {
-    top: 310px;
-}
-
 #newGame_button, #giveUp_button {
     position: absolute;
     height: 42px;
@@ -269,6 +265,7 @@ body:not(.isDialogUp) #giveUp_button:hover {
 #letters {
     width: 1px;
     margin: auto;
+    left: -10px;
     text-align: center;
     position: relative;
     bottom: 200px;
@@ -285,11 +282,9 @@ body:not(.isDialogUp) #giveUp_button:hover {
 }
 
 .letter {
-    font-size: 30pt;
+    font-weight: bold;
     font-family: DinBlack;
     position: absolute;
-    width: 100px;
-    /*outline: 1px yellow solid;*/
 }
 
 .letterGuessed {
@@ -452,11 +447,10 @@ body:not(.isDialogUp) #giveUp_button:hover {
 
 .dialog .title {
     color: black;
-    font-size: 20pt;
+    font-size: 1.5em;
     font-family: DinBold;
     text-align: center;
-    padding: 10px 1em;
-    text-shadow: 1px 1px 2px #888;
+    padding: 0.7em 0 0.6em 0;
 }
 
 .dialog .text {
@@ -573,15 +567,9 @@ div.pressed {
 .newGame_type {
     background-color: transparent;
     color: black;
-    height: 1em;
-    line-height: 1em;
-    font-size: 15pt;
+    font-size: 1.5em;
     font-family: DinMedium;
     text-align: center;
-    padding: 10px 1em;
+    padding: 0.5em;
     text-transform: uppercase;
-}
-
-.newGame_type.selected {
-    font-family: DinBold;
 }
