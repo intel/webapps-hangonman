@@ -63,32 +63,8 @@ function letterPressed (event)
         cl.add("letterPressed");
         cl.remove("letterNotGuessed");
     }
-}
 
-
-function letterEntered (event)
-{
-    if (!gameInProgress || isDialogUp) return;
-
-    var target = event.target;
-    if (target.pressed) {
-        var cl = target.classList;
-        cl.add("letterPressed");
-        cl.remove("letterNotGuessed");
-    }
-}
-
-function letterLeft (event)
-{
-    if (!gameInProgress || isDialogUp) return;
-
-    var target = event.target;
-    if (target.pressed) {
-        var cl = target.classList;
-        target.pressed = false;
-        cl.add("letterNotGuessed");
-        cl.remove("letterPressed");
-    }
+    letterSelected(event);
 }
 
 function letterSelected (event)
@@ -175,10 +151,7 @@ function initAlphabet ()
             letterElem.style.top = y+"px";
             letterElem.style.left = x+"px";
             letterElem.style.webkitTransform = "rotate("+angle+"rad)";
-            letterElem.addEventListener("mousedown", letterPressed, false);
-            letterElem.addEventListener("mouseover", letterEntered, false);
-            letterElem.addEventListener("mouseout", letterLeft, false);
-            letterElem.addEventListener("click", letterSelected, false);
+            letterElem.addEventListener("click", letterPressed, false);
             fragment.appendChild(letterElem);
             angle -= angleDelta;
         }
