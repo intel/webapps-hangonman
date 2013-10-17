@@ -149,10 +149,6 @@ body {
     top: 310px;
 }
 
-#newGame.shown {
-    top: 310px;
-}
-
 #newGame_button, #giveUp_button {
     position: absolute;
     height: 42px;
