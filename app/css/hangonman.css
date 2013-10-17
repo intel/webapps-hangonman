@@ -447,11 +447,10 @@ body:not(.isDialogUp) #giveUp_button:hover {
 
 .dialog .title {
     color: black;
-    font-size: 20pt;
+    font-size: 1.5em;
     font-family: DinBold;
     text-align: center;
-    padding: 10px 1em;
-    text-shadow: 1px 1px 2px #888;
+    padding: 0.7em 0 0.6em 0;
 }
 
 .dialog .text {
@@ -568,15 +567,9 @@ div.pressed {
 .newGame_type {
     background-color: transparent;
     color: black;
-    height: 1em;
-    line-height: 1em;
-    font-size: 15pt;
+    font-size: 1.5em;
     font-family: DinMedium;
     text-align: center;
-    padding: 10px 1em;
+    padding: 0.5em;
     text-transform: uppercase;
-}
-
-.newGame_type.selected {
-    font-family: DinBold;
 }
