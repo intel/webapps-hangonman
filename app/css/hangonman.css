@@ -269,6 +269,7 @@ body:not(.isDialogUp) #giveUp_button:hover {
 #letters {
     width: 1px;
     margin: auto;
+    left: -10px;
     text-align: center;
     position: relative;
     bottom: 200px;
@@ -285,11 +286,9 @@ body:not(.isDialogUp) #giveUp_button:hover {
 }
 
 .letter {
-    font-size: 30pt;
+    font-weight: bold;
     font-family: DinBlack;
     position: absolute;
-    width: 100px;
-    /*outline: 1px yellow solid;*/
 }
 
 .letterGuessed {
