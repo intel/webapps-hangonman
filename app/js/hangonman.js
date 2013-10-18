@@ -960,13 +960,12 @@ window.addEventListener("DOMContentLoaded", function(event)
 
 window.addEventListener("load", function (event)
 {
-    soundBoard.play("background");
-
-    window.onblur = function() {
+    // handlers to pause/play sound when window is hidden/visible
+    var appHiddenCb = function () {
         soundBoard.pause();
     };
 
-    window.onfocus = function() {
+    var appVisibleCb = function () {
         soundBoard.play("background");
 
         if (isDialogUp)
@@ -975,6 +974,22 @@ window.addEventListener("load", function (event)
         }
     };
 
+    if ("onvisibilitychange" in window) {
+      window.addEventListener("visibilitychange", function () {
+        if (window.hidden) {
+            appHiddenCb();
+        }
+        else {
+            appVisibleCb();
+        }
+      });
+    }
+    else {
+        window.onblur = appHiddenCb;
+        window.onfocus = appVisibleCb;
+    }
+
+    soundBoard.play("background");
     scaleBody(document.body, 720);
 }, false);
 
