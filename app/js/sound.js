@@ -37,10 +37,18 @@ var Sound = function (config) {
     self.isPlaying = true;
   });
 
+  // this is to work around Android xwalk not looping audio
+  // when the loop attribute is set:
+  // https://github.com/crosswalk-project/crosswalk/issues/659
+  this.audio.addEventListener('ended', function () {
+    self.isPlaying = false;
+    if (config.loop) {
+      self.play();
+    }
+  });
+
   this.audio.autoplay = false;
-  this.audio.buffer = true;
   this.audio.preload = 'auto';
-  this.audio.loop = config.loop;
   this.audio.src = config.url;
 };
 
