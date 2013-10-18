@@ -6,6 +6,18 @@ Owner: Todd Brandt <todd.e.brandt@intel.com>
 Technical Details: This application is written using HTML5/css3
 and is distributed under Apache2.0 license.
 
+LIBRARIES
+-----------------------------------------------------------------------------
+
+This application uses the smokesignals.js library (MIT licence):
+https://bitbucket.org/bentomas/smokesignals.js
+
+It should be installed at build time with bower:
+
+    $ npm install -g bower
+    $ cd <webapps-hangonman source>
+    $ bower install
+
 SOUNDS
 ------------------------------------------------------------------------------
 
