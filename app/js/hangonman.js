@@ -7,11 +7,32 @@
  *
  */
 
+/*
+  sounds needed:
+  - ambient city
+  - bird sounds
+  - squeeky pulley
+  - flapping wings
+  - flapping sheet
+  - button click
+  - wrong guess (whoa)
+  - right guess (yeah)
+  - wire boing
+  - falling man
+*/
+var soundBoard = new SoundBoard({
+    "background": {url: "audio/Background.ogg", loop: true},
+    "click": {url: "audio/ButtonClick.ogg"},
+    "yeah": {url: "audio/Yeah.ogg"},
+    "woah": {url: "audio/Whoa.ogg"},
+    "lose": {url: "audio/LoseGame.ogg"},
+    "dialog": {url: "audio/Banner.ogg"}
+});
+
 function getStyle (elem, prop)
 {
     return document.defaultView.getComputedStyle(elem).getPropertyValue(prop);
 }
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // Function to handle user input
@@ -89,9 +110,8 @@ function chooseLetter (index)
     cl.add("letterGuessed");
     cl.remove("letterPressed", "letterNotGuessed");
     elem.disabled = true;
-    if (useSounds) {
-        clickSound.play();
-    }
+
+    soundBoard.play("click");
 
     var letter = alphabet.string.charAt(index);
 
@@ -234,12 +254,17 @@ function saveGameState ()
 
 function restoreSettings ()
 {
+    var muted;
+
     try {
-        useSounds = JSON.parse(localStorage["com.intel.hom.useSounds"]);
+        muted = JSON.parse(localStorage["com.intel.hom.muted"]);
     }
     catch (e) {
-        useSounds = true;
-        localStorage["com.intel.hom.useSounds"] = JSON.stringify(useSounds);
+        muted = false;
+        localStorage["com.intel.hom.muted"] = JSON.stringify(muted);
+    }
+    finally {
+        soundBoard.muted = muted;
     }
 }
 
@@ -305,9 +330,8 @@ function initAnswer (answerString)
 var faceElem;
 function guessedRight (letter)
 {
-    if (useSounds && yeahSound) {
-        yeahSound.play();
-    }
+    soundBoard.play("yeah");
+
     faceElem = faceElem || document.querySelector("#hangman #face");
     faceElem.classList.add("guessedRight");
     rightGuesses = rightGuesses + letter;
@@ -344,7 +368,7 @@ function updateHangman(firstTime)
 
     if (didLose()) {
         delay = 500;
-        loseSound.play();
+        soundBoard.play("lose");
     }
 
     setTimeout(function() {
@@ -394,9 +418,9 @@ function setLocaleString (domId, stringKey)
 function showDialog (domId)
 {
     if (isDialogUp) return;
-    if (useSounds && dialogSound) {
-        dialogSound.play();
-    }
+
+    soundBoard.play("dialog");
+
     for(var i = 0; i < arguments.length; ++i) {
         isDialogUp = true;
         var currDomId = arguments[i];
@@ -413,9 +437,7 @@ function hideDialog (domId)
         bodyElem.classList.remove("isDialogUp");
         setTimeout(function() {
             isDialogUp = false;
-            if (dialogSound) {
-                dialogSound.pause();
-            }
+            soundBoard.play("dialog");
         }, 1000);
     }
 }
@@ -461,9 +483,7 @@ function initButton (domId, handler)
 {
     var elem = setLocaleString(domId);
     elem.addEventListener("click", function(e) {
-        if (useSounds) {
-            clickSound.play();
-        }
+        soundBoard.play("click");
         handler(e);
     }, false);
     addButtonEffects(elem);  //TODO: what effects happen when you click a button?
@@ -543,8 +563,9 @@ function restartBounce (isLast)
         innerStyle.webkitAnimationName = bodyAnimation;
         rWireStyle.webkitAnimationName = rightWireAnimation;
         lWireStyle.webkitAnimationName = leftWireAnimation;
-        if ((useSounds)&&(!didLose())) {
-            whoaSound.play();
+
+        if (!didLose()) {
+            soundBoard.play("woah");
         }
     }, 0);
 }
@@ -633,12 +654,12 @@ function firstStart (event)
     cancel.style.visibility="hidden";
     hideElement("help");
     showDialog("newGame_dialog");
-//    startGame(event);
 }
 
 function startGame (event)
 {
     gameInProgress = true;
+    soundBoard.play("background");
     hideElement("hangman");
     rightGuesses = [];
     wrongGuesses = [];
@@ -647,15 +668,13 @@ function startGame (event)
     showElement("skyline", "newGame", "hangman", "giveUp", "letters", "answer");
     hideElement("help");
     alphabet = initAlphabet();
-    answer = initAnswer(word)
+    answer = initAnswer(word);
     saveGameState();
 }
 
 function learnMore (event)
 {
-    if (useSounds) {
-        clickSound.play();
-    }
+    soundBoard.play("click");
     showDialog("learnMore_dialog");
 }
 
@@ -899,8 +918,6 @@ function fidgetNod (elem)
     setTimeout(setBirdState.bind(undefined, elem, BIRD_SIDE_PROFILE), 750);
 }
 
-var backgroundSound, clickSound, yeahSound, whoaSound, loseSound, dialogSound;
-
 var startElem;
 window.addEventListener("DOMContentLoaded", function(event)
 {
@@ -939,50 +956,22 @@ window.addEventListener("DOMContentLoaded", function(event)
 
     containerElem = document.getElementById("container");
     createCloud();
-
-    backgroundSound = document.querySelector("audio.background");
-    clickSound = document.querySelector("audio.buttonClick");
-    yeahSound = document.querySelector("audio.yeah");
-    whoaSound = document.querySelector("audio.whoa");
-    loseSound = document.querySelector("audio.lose");
-    dialogSound = document.querySelector("audio.dialog");
 }, false);
 
 window.addEventListener("load", function (event)
 {
-    var infocus = true;
-
-    if (useSounds) {
-        backgroundSound.play();
-    }
+    soundBoard.play("background");
 
     window.onblur = function() {
-        if(infocus)
-        {
-            infocus = false;
-            if (useSounds)
-            {
-                backgroundSound.pause();
-                if (dialogSound&&isDialogUp)
-                {
-                    dialogSound.pause();
-                }
-            }
-        }
+        soundBoard.pause();
     };
 
     window.onfocus = function() {
-        if(!infocus)
+        soundBoard.play("background");
+
+        if (isDialogUp)
         {
-            infocus = true;
-            if (useSounds)
-            {
-                backgroundSound.play();
-                if (dialogSound&&isDialogUp)
-                {
-                    dialogSound.play();
-                }
-            }
+            soundBoard.play("dialog");
         }
     };
 
