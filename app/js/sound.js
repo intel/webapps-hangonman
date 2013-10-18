@@ -39,6 +39,7 @@ var Sound = function (config) {
 
   this.audio.autoplay = false;
   this.audio.buffer = true;
+  this.audio.preload = 'auto';
   this.audio.loop = config.loop;
   this.audio.src = config.url;
 };
