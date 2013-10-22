@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2012, Intel Corporation.
  *
- * This program is licensed under the terms and conditions of the 
+ * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -17,16 +17,16 @@
 }
 
 @-webkit-keyframes bounce-wire-left-v0 {
-    0% {-webkit-transform: rotate( 9.975deg);}   
+    0% {-webkit-transform: rotate( 9.975deg);}
    11% {-webkit-transform: rotate(-6.323deg);}
-   22% {-webkit-transform: rotate( 3.993deg);}    
-   33% {-webkit-transform: rotate(-2.518deg);} 
-   44% {-webkit-transform: rotate( 1.587deg);}  
+   22% {-webkit-transform: rotate( 3.993deg);}
+   33% {-webkit-transform: rotate(-2.518deg);}
+   44% {-webkit-transform: rotate( 1.587deg);}
    55% {-webkit-transform: rotate(-1.000deg);}
-   66% {-webkit-transform: rotate( 0.630deg);}  
-   77% {-webkit-transform: rotate(-0.397deg);} 
-   88% {-webkit-transform: rotate( 0.250deg);}  
-  100% {-webkit-transform: rotate( 0.000deg);}    
+   66% {-webkit-transform: rotate( 0.630deg);}
+   77% {-webkit-transform: rotate(-0.397deg);}
+   88% {-webkit-transform: rotate( 0.250deg);}
+  100% {-webkit-transform: rotate( 0.000deg);}
 }
 
 @-webkit-keyframes bounce-wire-right-v10 {
@@ -111,16 +111,16 @@
 }
 
 @-webkit-keyframes bounce-wire-right-v0 {
-    0% {-webkit-transform: rotate(-6.40deg);} 
-   11% {-webkit-transform: rotate( 4.03deg);} 
+    0% {-webkit-transform: rotate(-6.40deg);}
+   11% {-webkit-transform: rotate( 4.03deg);}
    22% {-webkit-transform: rotate(-2.55deg);}
-   33% {-webkit-transform: rotate( 1.58deg);} 
-   44% {-webkit-transform: rotate(-1.00deg);}   
-   55% {-webkit-transform: rotate( 0.67deg);} 
-   66% {-webkit-transform: rotate(-0.40deg);}  
-   77% {-webkit-transform: rotate( 0.28deg);}  
-   88% {-webkit-transform: rotate(-0.18deg);} 
-  100% {-webkit-transform: rotate( 0.00deg);}    
+   33% {-webkit-transform: rotate( 1.58deg);}
+   44% {-webkit-transform: rotate(-1.00deg);}
+   55% {-webkit-transform: rotate( 0.67deg);}
+   66% {-webkit-transform: rotate(-0.40deg);}
+   77% {-webkit-transform: rotate( 0.28deg);}
+   88% {-webkit-transform: rotate(-0.18deg);}
+  100% {-webkit-transform: rotate( 0.00deg);}
 }
 
 @-webkit-keyframes bounce {
@@ -155,7 +155,7 @@
     top: -300px;
     left: 50%;
     width: 285px;
-    height: 200px; 
+    height: 200px;
     -webkit-transform: translateX(-50%) scale(.80, .80);
     -webkit-animation-duration: 2s;
     -webkit-animation-iteration-count: 1;
@@ -227,10 +227,10 @@
     background-image: url("../images/figure5.png");
 }
 
-#hangman.v4 #torso_2hands, 
-#hangman.v3 #torso_2hands, 
-#hangman.v2 #torso_2hands, 
-#hangman.v1 #torso_2hands, 
+#hangman.v4 #torso_2hands,
+#hangman.v3 #torso_2hands,
+#hangman.v2 #torso_2hands,
+#hangman.v1 #torso_2hands,
 #hangman.v0 #torso_2hands {
     display: none;
 }
@@ -245,9 +245,9 @@
     display: none;
 }
 
-#hangman.v3 #torso_1hand, 
-#hangman.v2 #torso_1hand, 
-#hangman.v1 #torso_1hand, 
+#hangman.v3 #torso_1hand,
+#hangman.v2 #torso_1hand,
+#hangman.v1 #torso_1hand,
 #hangman.v4 #torso_1hand {
     display: block;
 }
@@ -343,88 +343,7 @@
     background-image: url("../images/hand-full-1.png");
 }
 
-#hangman #face {
-    -webkit-transform-origin: 50% 50%;
-    z-index: 2;
-    width: 40px;
-    height: 38px;
-}
-
-#hangman.v10 #face {
-    top: 90px;
-    left: 122px;
-    background-image: url("../images/face-positive-1.png");
-}
-
-#hangman.v9 #face {
-    top: 110px;
-    left: 108px;
-    background-image: url("../images/face-positive-2.png");
-}
-
-#hangman.v8 #face,
-#hangman.v7 #face,
-#hangman.v6 #face,
-#hangman.v5 #face {
-    top: 114px;
-    left: 122px;
-}
-
-#hangman.v8 #face {
-    width: 42px;
-    height: 43px;
-    background-image: url("../images/face-negative-1.png");
-}
-
-#hangman.v7 #face {
-    width: 41px;
-    background-image: url("../images/face-negative-2.png");
-}
-
-#hangman.v6 #face {
-    background-image: url("../images/face-negative-3.png");
-}
-
-#hangman.v5 #face {
-    background-image: url("../images/face-negative-4.png");
-}
-
-#hangman.v4 #face,
-#hangman.v3 #face,
-#hangman.v2 #face,
-#hangman.v1 #face {
-    top: 133px;
-    left: 95px;
-}
-
-#hangman.v4 #face {
-    height: 40px;
-    background-image: url("../images/face-negative-5.png");
-}
-
-#hangman.v3 #face {
-    background-image: url("../images/face-negative-6.png");
-}
-
-#hangman.v2 #face {
-    background-image: url("../images/face-negative-7.png");
-}
-
-#hangman.v1 #face {
-    width: 42px;
-    height: 43px;
-    background-image: url("../images/face-negative-8.png");
-}
-
-#hangman.v0 #face {
-    display: none;
-}
-
-
-#hangman #face.guessedRight {
-    background-image: url("../images/face-positive-1.png");
-}
-
+/* left foot */
 #hangman #left_foot {
     width: 29px;
     height: 16px;
@@ -444,17 +363,17 @@
     -webkit-transform: rotate(15deg);
 }
 
-#hangman.v5 #left_foot, 
-#hangman.v6 #left_foot, 
-#hangman.v7 #left_foot, 
+#hangman.v5 #left_foot,
+#hangman.v6 #left_foot,
+#hangman.v7 #left_foot,
 #hangman.v8 #left_foot {
     top: 218px;
     left: 113px;
 }
 
-#hangman.v1 #left_foot, 
-#hangman.v2 #left_foot, 
-#hangman.v3 #left_foot, 
+#hangman.v1 #left_foot,
+#hangman.v2 #left_foot,
+#hangman.v3 #left_foot,
 #hangman.v4 #left_foot {
     top: 219px;
     left: 36px;
@@ -484,9 +403,9 @@
     -webkit-transform: rotate(12deg);
 }
 
-#hangman.v7 #right_foot, 
-#hangman.v6 #right_foot, 
-#hangman.v5 #right_foot, 
+#hangman.v7 #right_foot,
+#hangman.v6 #right_foot,
+#hangman.v5 #right_foot,
 #hangman.v8 #right_foot {
     top: 218px;
     left: 139px;

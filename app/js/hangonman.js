@@ -29,6 +29,8 @@ var soundBoard = new SoundBoard({
     "dialog": {url: "audio/Banner.ogg"}
 });
 
+var face = new Face();
+
 function getStyle (elem, prop)
 {
     return document.defaultView.getComputedStyle(elem).getPropertyValue(prop);
@@ -327,13 +329,12 @@ function initAnswer (answerString)
 }
 
 
-var faceElem;
 function guessedRight (letter)
 {
     soundBoard.play("yeah");
 
-    faceElem = faceElem || document.querySelector("#hangman #face");
-    faceElem.classList.add("guessedRight");
+    face.guessedRight();
+
     rightGuesses = rightGuesses + letter;
     var string = answer.letters;
     var pos = string.indexOf(letter);
@@ -349,10 +350,7 @@ function guessedWrong (letter)
 {
     wrongGuesses = wrongGuesses + letter;
     gameInProgress = !didLose();
-
-    faceElem = faceElem || document.querySelector("#hangman #face");
     updateHangman();
-    faceElem.classList.remove("guessedRight");
 }
 
 var hangmanElem;
@@ -373,6 +371,7 @@ function updateHangman(firstTime)
 
     setTimeout(function() {
         classList.add("v"+numFingers);
+        face.setFingers(numFingers);
         for (var i = 0; i <= maxWrongGuesses; ++i) {
             if (i !== numFingers) {
                 classList.remove("v"+i);
