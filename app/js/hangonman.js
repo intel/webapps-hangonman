@@ -30,6 +30,7 @@ var soundBoard = new SoundBoard({
 });
 
 var face = new Face();
+var torso = new Torso();
 
 function getStyle (elem, prop)
 {
@@ -371,12 +372,16 @@ function updateHangman(firstTime)
 
     setTimeout(function() {
         classList.add("v"+numFingers);
+
         face.setFingers(numFingers);
+        torso.setFingers(numFingers);
+
         for (var i = 0; i <= maxWrongGuesses; ++i) {
             if (i !== numFingers) {
                 classList.remove("v"+i);
             }
         }
+
         if (!firstTime) {
             restartBounce();
             if (numFingers <= 4) {

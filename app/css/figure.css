@@ -178,94 +178,7 @@
     -webkit-transition: top 3s cubic-bezier(1, 0, 1, 1);
 }
 
-
-/* ten fingers */
-
-#hangman #torso_2hands {
-    width: 282px;
-    height: 229px;
-}
-
-#hangman.v10 #torso_2hands {
-    top: 0px;
-    left: 0px;
-    width: 288px;
-    height: 208px;
-    background-image: url("../images/figure10.png");
-}
-
-#hangman.v9 #torso_2hands {
-    top: 0px;
-    left: -3px;
-    width: 279px;
-    height: 223px;
-    background-image: url("../images/figure9.png");
-}
-
-#hangman.v8 #torso_2hands {
-    top: 0px;
-    left: -6px;
-    width: 285px;
-    background-image: url("../images/figure8.png");
-}
-
-#hangman.v7 #torso_2hands {
-    top: 0px;
-    left: -6px;
-    background-image: url("../images/figure7.png");
-}
-
-#hangman.v6 #torso_2hands {
-    top: 0px;
-    left: -6px;
-    background-image: url("../images/figure6.png");
-}
-
-#hangman.v5 #torso_2hands {
-    top: 0px;
-    left: -6px;
-    background-image: url("../images/figure5.png");
-}
-
-#hangman.v4 #torso_2hands,
-#hangman.v3 #torso_2hands,
-#hangman.v2 #torso_2hands,
-#hangman.v1 #torso_2hands,
-#hangman.v0 #torso_2hands {
-    display: none;
-}
-
-#hangman #torso_1hand {
-    top: 100px;
-    left: 44px;
-    width: 157px;
-    height: 139px;
-    background-image: url("../images/figure4-3-2-1.png");
-    -webkit-transform-origin: 20px 0px;
-    display: none;
-}
-
-#hangman.v3 #torso_1hand,
-#hangman.v2 #torso_1hand,
-#hangman.v1 #torso_1hand,
-#hangman.v4 #torso_1hand {
-    display: block;
-}
-
-#hangman #torso_0hands {
-    width: 85px;
-    height: 124px;
-    top: 123px;
-    left: -1000px; /*hide*/
-    background-image: url("../images/figure0.png");
-    z-index: 1;
-}
-
-#hangman.v0 #torso_0hands
-{
-    left: 45px;
-}
-
+/* arms */
 #hangman #right_arm,
 #hangman #left_arm {
     background-image: url("../images/arm-hand.png");
@@ -301,12 +214,13 @@
     -webkit-animation: wave-right .5s 10 alternate;
 }
 
-#hangman.v0 #inner2 {
+#hangman.v0 #inner2, #hangman.v0 #inner {
     top: 500px;
 }
 
 #hangman #hand {
     display: none;
+    z-index: 50;
 }
 
 #hangman.v4 #hand {
