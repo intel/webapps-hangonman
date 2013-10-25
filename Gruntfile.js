@@ -31,12 +31,9 @@ module.exports = function (grunt) {
     // minify JS
     uglify: {
       dist: {
-        files: {
-          'build/app/js/hangonman.js': ['app/js/hangonman.js'],
-          'build/app/js/license.js': ['app/js/license.js'],
-          'build/app/js/getMessage.js': ['app/js/getMessage.js'],
-          'build/app/js/scaleBody.js': ['app/js/scaleBody.js'],
-        }
+        files: [
+          {cwd: 'app/js', src: '*.js', dest: 'build/app/js', expand: true}
+        ]
       }
     },
 
