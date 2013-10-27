@@ -1,6 +1,6 @@
 {
   "name": "HangOnMan",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Classic Hangman Game",
   "main": "app/index.html",
   "scripts": {
