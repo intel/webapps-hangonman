@@ -3,6 +3,7 @@ module.exports = function (grunt) {
   var which = require('which');
   var fs = require('fs');
   var semver = require('semver');
+  var _ = require('lodash');
 
   var Api = require('crosswalk-apk-generator');
 
@@ -73,11 +74,14 @@ module.exports = function (grunt) {
 
     if (!envConfig.androidAPIVersion) {
       // get the api latest version from androidSDK/build-tools
-      var buildToolsDir = path.join(envConfig.androidSDKDir,"build-tools");
-      var files = fs.readdirSync(buildToolsDir);
-      var androidAPIVersions = files.sort(semver.compare);
-      var length = androidAPIVersions.length;
-      var latest = androidAPIVersions[length-1];
+      var platformsDir = path.join(envConfig.androidSDKDir,"platforms");
+      var files = fs.readdirSync(platformsDir);
+      var androidAPIVersions = _.map(files,function(file) {
+          var bits = file.split("-");
+          return bits[bits.length-1];
+      });
+      var sorted = androidAPIVersions.sort(semver.compare);
+      var latest = sorted[sorted.length-1];
       envConfig.androidAPIVersion = latest;
     }
 
