@@ -423,7 +423,7 @@ body:not(.isDialogUp) #giveUp_button:hover {
     left: 50%;
     top: 100%;
     -webkit-transform-origin: 50% 70px;
-    -webkit-transform: translate(-50%, 0%);
+    -webkit-transform: translate(-50%, 100%);
     -webkit-transition: top 2s ease-in-out, -webkit-transform 2s ease-in-out;
     z-index: 25;
 }
